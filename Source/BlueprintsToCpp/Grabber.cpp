@@ -3,6 +3,9 @@
 
 #include "Grabber.h"
 
+#include "Kismet/KismetMathLibrary.h"
+#include "GameFramework/Actor.h"
+
 // Sets default values for this component's properties
 UGrabber::UGrabber()
 {
@@ -28,6 +31,24 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	UE_LOG(LogTemp, Warning, TEXT("Grabber TickComponent"));
+	//UE_LOG(LogTemp, Warning, TEXT("Grabber TickComponent"));
+}
+
+// Determines the furthest we pick up from
+FVector UGrabber::GetMaxGrabLocation() const
+{
+	return GetComponentLocation() + GetComponentRotation().Vector() * MaxGrabDistance;
+}
+
+// Determines where we start to pick up
+FVector UGrabber::GetHoldLocation() const
+{
+	return GetComponentLocation() + GetComponentRotation().Vector() * HoldDistance;
+}
+
+// Returns the physics rigidbody of the actor
+UPhysicsHandleComponent* UGrabber::GetPhysicsComponent() const
+{
+	return GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 }
 

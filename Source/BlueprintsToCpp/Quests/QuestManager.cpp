@@ -26,6 +26,6 @@ void AQuestManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("QuestManager Tick"));
+	//UE_LOG(LogTemp, Warning, TEXT("QuestManager Tick"));
 }
 
