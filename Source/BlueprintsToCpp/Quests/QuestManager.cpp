@@ -40,6 +40,6 @@ void AQuestManager::CompleteQuest_Implementation(FName QuestId, bool CompleteWho
 	}
 	else
 	{
-		QuestList[QuestIndex].Progress = FMath::Min(Quest.ProgressTotal + 1, Quest.ProgressTotal);
+		QuestList[QuestIndex].Progress = FMath::Min(Quest.Progress + 1, Quest.ProgressTotal);
 	}
 }
