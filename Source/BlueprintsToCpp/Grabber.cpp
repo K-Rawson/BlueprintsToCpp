@@ -52,3 +52,8 @@ UPhysicsHandleComponent* UGrabber::GetPhysicsComponent() const
 	return GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 }
 
+// Native Event handler for ray tracing sphere collisions
+bool UGrabber::TraceForPhysicsBodies_Implementation(AActor*& HitActor, UPrimitiveComponent*& HitComponent)
+{
+	return false;
+}
