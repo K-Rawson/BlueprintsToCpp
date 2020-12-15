@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "QuestManager.h"
 #include "QuestMarker.generated.h"
 
 UCLASS()
@@ -16,10 +17,22 @@ public:
 	// Sets default values for this actor's properties
 	AQuestMarker();
 
+	UFUNCTION(BlueprintCallable)
+	void RefreshVisibility();
+
 protected:
+	UFUNCTION(BlueprintPure, BlueprintImplementableEvent)
+	AQuestManager* GetQuestManager();
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent* Root;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UParticleSystemComponent* ParticleSystem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName QuestName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int32 ShowAtProgress = 0;
 };
