@@ -16,6 +16,12 @@ AQuestMarker::AQuestMarker()
 	ParticleSystem->SetupAttachment(Root);
 }
 
+void AQuestMarker::BeginPlay()
+{
+	GetQuestManager()->CompletedQuest.AddDynamic(this, &AQuestMarker::QuestUpdate);
+	RefreshVisibility();
+}
+
 void AQuestMarker::RefreshVisibility()
 {
 	FQuestInfo Quest = GetQuestManager()->GetQuest(QuestName);
@@ -23,3 +29,7 @@ void AQuestMarker::RefreshVisibility()
 	ParticleSystem->SetVisibility(Visibility);
 }
 
+void AQuestMarker::QuestUpdate(int32 Index)
+{
+	RefreshVisibility();
+}
